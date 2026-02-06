@@ -1,0 +1,19 @@
+def is_palindrome_number(x: int) -> bool:
+    # negative numbers and numbers ending with 0 (except 0) are not palindromes
+    if x < 0 or (x % 10 == 0 and x != 0):
+        return False
+
+    rev = 0
+    # build reversed half of the number
+    while x > rev:
+        rev = rev * 10 + x % 10
+        x //= 10
+
+    # For even length: x == rev
+    # For odd length: x == rev // 10 (middle digit ignored)
+    return x == rev or x == rev // 10
+
+# examples
+print(is_palindrome_number(121))  # True
+print(is_palindrome_number(123))  # False
+print(is_palindrome_number(0))    # True
